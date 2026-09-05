@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import {
+  listLoggedInProfiles,
   resolveProfile,
   writeProfile
 } from '../lib/profile.mjs';
@@ -33,6 +34,15 @@ if (command === 'switch') {
   }
 
   try {
+    const loggedIn = listLoggedInProfiles();
+
+    if (!loggedIn.includes(name)) {
+      console.error(
+        `Warning: '${name}' is not logged in yet. ` +
+        `Run: clasp login --user ${name}`
+      );
+    }
+
     const filePath = writeProfile(name, {
       local: localScope
     });
@@ -50,6 +60,33 @@ if (command === 'switch') {
     console.error(error.message);
     process.exit(1);
   }
+}
+
+if (command === 'profiles') {
+  const loggedIn = listLoggedInProfiles();
+  const active = resolveProfile();
+
+  if (loggedIn.length === 0) {
+    console.log(
+      'No logged-in profiles found. ' +
+      'Run: clasp login --user <name>'
+    );
+    process.exit(0);
+  }
+
+  for (const name of loggedIn) {
+    const marker =
+      active?.name === name ? '*' : ' ';
+    console.log(`${marker} ${name}`);
+  }
+
+  console.log('');
+  console.log(
+    active
+      ? `Active: ${active.name} (${active.source})`
+      : 'Active: (not configured)'
+  );
+  process.exit(0);
 }
 
 if (command === 'whoami') {
