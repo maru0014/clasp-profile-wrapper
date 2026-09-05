@@ -1,0 +1,14 @@
+{
+  "name": "clasp-profile-wrapper",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "clasp": "bin/clasp.mjs"
+  },
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "dependencies": {
+    "@google/clasp": "^3.4.1"
+  }
+}
