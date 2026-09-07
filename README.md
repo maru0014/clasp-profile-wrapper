@@ -36,8 +36,8 @@ clasp --version
 ### アカウントを登録する
 
 ```bash
-clasp login --user codelife
-clasp login --user marumo
+clasp login --user work
+clasp login --user personal
 ```
 
 `--user` を明示したログインなので、ラッパーは何もプロファイルを注入しない。
@@ -45,8 +45,8 @@ clasp login --user marumo
 ### アクティブなプロファイルを切り替える
 
 ```bash
-clasp switch codelife          # PC全体のデフォルトを切り替える
-clasp switch marumo --local    # 現在のプロジェクトだけ上書きする
+clasp switch work              # PC全体のデフォルトを切り替える
+clasp switch personal --local  # 現在のプロジェクトだけ上書きする
 ```
 
 指定した名前がまだ `clasp login --user <name>` されていない場合は警告が出るが、切り替え自体はブロックしない(先に名前だけ決めておく運用のため)。
@@ -112,4 +112,4 @@ PowerShellで `[Environment]::SetEnvironmentVariable('CLASP_ACTIVE_PROFILE', $na
 
 ## ライセンス
 
-Private use.
+MIT

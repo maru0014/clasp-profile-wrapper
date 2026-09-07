@@ -2,6 +2,7 @@
   "name": "clasp-profile-wrapper",
   "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
   "bin": {
     "clasp": "bin/clasp.mjs"
   },
